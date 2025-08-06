@@ -3,4 +3,6 @@ project(KDB)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(KDB main.cpp)
+add_executable(KDB main.cpp
+        SkipList/SkipList.cpp
+        SkipList/SkipList.h)
