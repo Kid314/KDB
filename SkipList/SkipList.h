@@ -27,7 +27,7 @@ public:
 class SkipList
 {
 public:
-    void put(std::string&,std::string&);
+    void put(std::string,std::string);
     [[nodiscard]] std::optional<std::string_view> get(const std::string&) const;
     void remove(const std::string&);
     explicit SkipList(int);
