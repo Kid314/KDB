@@ -60,5 +60,3 @@ This project primarily serves as a C++ practice ground, focusing on:
 *   系统设计与架构 (LSM-Tree)
 *   文件 I/O 与内存管理
 *   并发编程与性能优化
-
-这个readme是gemini帮我写的：）我不是很会markdown：(
