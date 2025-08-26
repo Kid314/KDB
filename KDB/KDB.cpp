@@ -30,6 +30,7 @@ KDB::KDB(int level):sequence(1),DB(level)
     }
     file.seekg(0);
     uint8_t op_code;
+    uint64_t max_sequence=0;
     uint64_t new_sequence;
     uint32_t key_size;
     uint32_t value_size;
@@ -53,6 +54,10 @@ KDB::KDB(int level):sequence(1),DB(level)
             {
                 DB.remove(new_key, new_sequence);
             }
+            if (new_sequence>max_sequence)
+            {
+                max_sequence=new_sequence;
+            }
         }
     }
     catch (const std::ios_base::failure& e)
@@ -62,7 +67,7 @@ KDB::KDB(int level):sequence(1),DB(level)
             throw std::runtime_error("wal file is error:"+std::string(e.what()));
         }
     }
-    sequence = new_sequence + 1;
+    sequence = max_sequence + 1;
     file.close();
 }
 
