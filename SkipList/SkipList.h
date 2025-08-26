@@ -9,27 +9,33 @@
 #include <random>
 #include <string>
 #include <vector>
-enum class Stat
+enum class Option
 {
-    Alive,
+    Put,
     Deleted
 };
+typedef struct Internal_key
+{
+    std::string key;
+    uint64_t sequence;
+    Option option;
+    Internal_key(std::string&& new_key,uint64_t new_sequence,Option new_option):key(std::move(new_key)),sequence(new_sequence),option(new_option) {}
+}internal_key;
 class Node
 {
 public:
     std::vector<Node*> forward;
-    std::string key;
+    internal_key key;
     std::string value;
-    Stat status;
     int level;
-    explicit Node(std::string&&,std::string&&,int);
+    explicit Node(std::string&&,std::string&&,int,uint64_t,Option);
 };
 class SkipList
 {
 public:
-    void put(std::string,std::string);
+    void put(std::string,std::string,uint64_t);
     [[nodiscard]] std::optional<std::string_view> get(const std::string&) const;
-    void remove(const std::string&);
+    void remove(const std::string&,uint64_t);
     explicit SkipList(int);
     ~SkipList();
 private:

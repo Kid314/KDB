@@ -5,4 +5,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(KDB main.cpp
         SkipList/SkipList.cpp
-        SkipList/SkipList.h)
+        SkipList/SkipList.h
+        KDB/KDB.cpp
+        KDB/KDB.h
+        logger/logger.cpp
+        logger/logger.h)

@@ -1,21 +1,22 @@
-#include "SkipList/SkipList.h"
 #include <iostream>
+#include "KDB/KDB.h"
+
 int main()
 {
-    SkipList list1(4);
-    list1.put("a","b");
-    auto result=list1.get("a");
-
-    if (result!=std::nullopt)
-        std::cout<<*result<<"\n";
-
-    list1.put("a","c");
-    if (result!=std::nullopt)
-        std::cout<<*result<<"\n";
-
-    list1.remove("a");
-    result=list1.get("a");
-    if (result!=std::nullopt)
-        std::cout<<*result<<"\n";
+    try
+    {
+        KDB my_db(4);
+        //my_db.put("hello","kid314");
+        std::optional<std::string_view> result=my_db.get("kid314");
+        if (result!=std::nullopt)
+        {
+            std::cout<<*result<<"\n";
+        }
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr<<e.what()<<"\n";
+        return 1;
+    }
     return 0;
 }
