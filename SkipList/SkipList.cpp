@@ -93,7 +93,7 @@ void SkipList::remove(const std::string& request_key,uint64_t order)
         }
         mem_vec[i]=help;
     }
-    if (mem_vec[0]->forward[0]==nullptr||mem_vec[0]->forward[0]->key.key!=request_key)
+    if (mem_vec[0]->forward[0]==nullptr||mem_vec[0]->forward[0]->key.key!=request_key||mem_vec[0]->forward[0]->key.option==Option::Deleted)
     {
         printf("remove a invalid key!\n");
         return;
